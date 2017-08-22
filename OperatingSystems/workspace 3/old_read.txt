@@ -1,0 +1,119 @@
+//Old READ code
+/**	int start_pos = start_byte;
+	int bytes2read = num_bytes;
+	char* readDataBuffer = new char[num_bytes];
+	int position = 0;
+	string reader = "";
+//	cout << filename << endl;
+	int i;
+	File readFile;
+	vector<File> files = disk.getFiles();
+	for (i = 0; i < disk.files.size(); i++){
+		if (files[i].getFilename() == filename){
+			readFile = files[i];
+			break;
+		}
+	}
+	
+	if (i == 256){
+		cout << "File not found!" << endl;
+		return;
+	}
+	
+	
+	
+	
+	//go into start_byte position into the size of this array, and then read in num_bytes
+
+	ifstream fin(disk.diskname,ifstream::binary); 
+	if(fin.is_open()) 
+	{
+		bool first_read = true;
+		int seek_position;
+		int limit;
+		for(int x = 0; x < 12; x++){
+			//no data to read
+			if(readFile.dbps[x] == -1){
+				for(int j = 0; j < x; j++){
+					cout << readDataBuffer[j];
+				}
+				cout << endl;
+				return;
+			}else {
+				if (first_read == true){
+					seek_position = (readFile.dbps[x]*disk.block_size)+(257*disk.block_size)+start_byte;
+				} else {
+					// Not sure why this is here. 
+				}
+				
+				limit = (readFile.dbps[x]*disk.block_size)+(257*disk.block_size) + disk.block_size;
+				fin.seekg(seek_position, ios::beg);
+				while(bytes2read > 0 && fin.tellg() <= limit) {
+					fin.get(readDataBuffer[position]);
+					position++;
+					bytes2read--;
+				}
+				//once this breaks out check shit
+				
+				if(bytes2read == 0){
+					for(int k = 0; k < num_bytes; k++){
+						cout << readDataBuffer[k];
+					}
+					cout << endl;
+					return;
+				}
+					
+			}
+		}
+		
+		for(int x = 0; x < readFile.ibp_num->dbps.size(); x++){
+			//if -1, that means its empty and thus no data left just break
+		if (readFile.ibp_num->block_num == -1 || readFile.ibp_num->dbps[x] == -1){ 
+			break;
+		} else {
+			seek_position = (readFile.ibp_num->dbps[x]*disk.block_size)+(257*disk.block_size);
+			limit = (readFile.ibp_num->dbps[x]*disk.block_size)+(257*disk.block_size) + disk.block_size;
+			fin.seekg(seek_position, ios::beg);
+			while(bytes2read > 0 && fin.tellg() != limit){
+				fin.get(readDataBuffer[position]);
+				position++;
+				bytes2read--;
+				}
+			}
+		}
+		
+		for(int x = 0; x < readFile.dibp_num->ibps.size(); x++){
+		//check if dibp initialized
+		if(readFile.dibp_num->block_num == -1){
+			break;
+		} else {
+			for( int k = 0; k < readFile.dibp_num->ibps[x]->dbps.size(); k++){
+				//check if ibps is initialized
+				if(readFile.dibp_num->ibps[x]->block_num == -1 || readFile.dibp_num->ibps[x]->dbps[k] == -1){
+					break;
+				} else {
+					seek_position = (readFile.dibp_num->ibps[x]->dbps[k]*disk.block_size)+(257*disk.block_size);
+					limit = (readFile.dibp_num->ibps[x]->dbps[k]*disk.block_size)+(257*disk.block_size)+disk.block_size;
+					fin.seekg(seek_position, ios::beg);
+					while(bytes2read > 0 && fin.tellg() != limit){
+						fin.get(readDataBuffer[position]);
+						position++;
+						bytes2read--;
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	else //file could not be opened
+	{
+		cout << "File could not be opened." << endl;
+	}
+  
+  
+   for(int x = 0; x < num_bytes; x++){
+   	cout << readDataBuffer[x];
+   }
+   cout << endl;
+	**/

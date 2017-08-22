@@ -1,0 +1,168 @@
+/**
+void disk_write(){
+	//What needs to be written to disk?
+	//Diskname - check
+	//Block size of disk - check
+	//Number of blocks on disk - check
+	//Number of files currently on  ?
+	//File names of files currently on disk - check
+	//File sizes - can calculate from ibp & dbp?
+	//Inode numbers of files - check
+	//Free block list
+	/*std::vector<bool> free_blocks;
+	//	std::vector<int> inode_map;
+		std::vector<File>files; - check
+		std::vector<bool>free_inodes;
+	
+	
+	FILE *cont;
+    cont = fopen(disk.diskname, "r+");
+	
+	ofstream disk_writer;
+	disk_writer(diskname, out);
+	if(disk_writer.is_open()) {
+		fseek(cont, 0, SEEK_SET);
+		fputs(dis.diskname+"\n"+disk.block_size+"\n"+disk.num_blocks, cont);
+		
+		disk_writer << disk.diskname << endl;
+		disk_writer << disk.block_size << endl;
+		disk_writer << disk.num_blocks << "\n";
+		
+		if(disk.free_blocks.empty()) {
+			disk_writer << "NULL\n";
+		} else {
+			for (vector<bool>::iterator blockIter = disk.free_blocks.begin() ; blockIter != disk.free_blocks.end(); ++blockIter) {
+				bool temp = *blockIter;
+				if (temp == false) {
+					disk_writer << 0 << " "
+				} else {
+					disk_writer << 1 << " "	
+				}
+			}
+			disk_writer<< "\n";
+		}
+
+		if(disk.inode_map.empty()) {
+			disk_writer << "NULL\n";
+		} else {
+			for(vector<int>::iterator inodeIter = disk.inode_map.begin() ; inodeIter != disk.inode_map.end(); ++inodeIter) {
+				disk_writer << *inodeIter << " ";
+			}
+			disk_writer << "\n";
+		}
+		
+		if(disk.free_inodes.empty()) {
+			disk_writer << "NULL\n";
+		} else {
+			for(vector<int>::iterator fIt = disk.free_inodes.begin() ; fIt != disk.free_inodes.end(); ++fIt) {
+				bool temp = *fIt;
+				if (temp == false) {
+					disk_writer << 0 << " "
+				} else {
+					disk_writer << 1 << " "	
+				}
+			}
+			disk_writer << "\n";
+		}
+		
+		if(disk.files.empty()) {
+			disk_writer << "NULL\n"; // << might need to move this? not sure yet
+		} else {
+			for (vector<File>::iterator it = disk.files.begin() ; it != disk.files.end(); ++it) {
+				disk_writer << *it.filename << "\n";
+				disk_writer << *it.inode_block <<"n";
+				for(int i = 0; i < 12; i++) {
+					disk_writer << *it.dbp[i] << " ";
+				}
+				disk_writer << "\n";
+				disk_writer << *it.ibp_num << "\n";
+				disk_writer << *it.didp_num << "\n";
+				disk_writer << "&\n"; //End of info for one file
+			}
+		}
+	} else {
+		cerr << "Error opening disk writer, no changes made.\n"
+	}
+	disk_writer.close();
+	
+	
+	fseek(cont, (disk.files[fileNum].DIBP.ibps[i].dips[p]*disk.block_size)+(256*disk.block_size)+j, SEEK_SET);
+	fputs(bytes[index], cont);
+	
+	fclose(cont);
+}
+**/
+
+
+
+
+/**
+void write(string filename, char character, int start_byte, int num_bytes) {
+// look into <filename>
+	int i;
+//	int k;
+	vector<File> files = disk.getFiles();
+	for(i = 0; i < 256; i++){
+		if(files[i].getFilename() == filename){
+			//  at <start_byte>
+			// if there are fewer than <start_byte> bytes in the file, report an error.
+
+			if("something" < start_byte) {
+				cout << "There are fewer than " << start_byte << " bytes in the file." << endl;
+				return;
+			}
+
+			// if there are fewer than <start_byte> + <num_bytes> bytes in the file before the 
+			// command, the file should be appended to make room for extra characters
+
+			if("something" < start_byte + num_bytes) {
+				// if not enough free file blocks exist to complete the command, you may either write as 
+				// many bytes as you can and then abort, or just not carry out the command and return an 
+				// error.
+				if(not enough free file blocks) {
+					cout << "There are not enough free file blocks to complete the command" << endl;
+					return
+				}
+				else {
+					// append file to make room for extra characters
+				}
+			}
+			// write puts one character <char> <num bytes> times into file <SSFS file name> starting at 
+			// <start byte>
+				for (k = num_bytes; k < num_bytes; k++) {
+		
+				}
+			}
+
+				
+		}
+	}
+}
+
+
+
+// display <num_bytes> of the file <filename> starting at <start_byte>
+void read(string filename, int start_byte, int num_bytes) {
+	ifstream inFile;
+	size_t size = 0;
+// the next line needs to open the correct <filename>, I'm not sure if it does.
+	inFile.fopen(filename, ios::in|ios::binary|ios::ate);
+	char* data = 0;
+
+	inFile.seekg(0, ios::end); // this sets a pointer to the end of the file
+	size = inFile.tellg(); // this gets the length of the file
+	inFile.seekg(start_byte, ios::beg); // sets the pointer to the beginning
+
+	data = new char[size+1]; // for the EOF char
+	inFile.read(data, size);
+	data[size] = '\0'; // set the EOF char
+
+	for (size_t i = 0; i < strlen(data); i++) {
+		cout << data[i] << " ";
+	}
+	getchar();
+	cout << endl;
+
+}
+
+**/
