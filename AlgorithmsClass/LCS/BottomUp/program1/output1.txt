@@ -1,0 +1,7 @@
+0 0 0 0 0 0 
+0 0 0 0 1 1 
+0 1 1 1 1 2 
+0 1 1 2 2 2 
+0 1 1 2 2 3 
+A longest common subsequence is bcb
+The running time of the algorithm 3
