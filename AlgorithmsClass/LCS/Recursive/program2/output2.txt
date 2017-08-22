@@ -1,0 +1,2 @@
+The Length of the LCS is 3
+The runtime of the algorithm is 3
